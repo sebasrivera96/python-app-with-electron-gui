@@ -1,24 +1,18 @@
-FROM ubuntu:16.04
+FROM python:3.5-slim
 
 LABEL author=sebas.rivera96@gmail.com
 
-# Copy all the files needed to run the app
-COPY . /home/JunkClassifier/app
+RUN apt-get -y update && apt-get -y upgrade 
 
-# Set the DEFAULT working directory
-WORKDIR /home/JunkClassifier/app
+# Copy all the files needed to run the app
+COPY . /app
 
 # Install all the dependencies, frameworks, libraries, etc.
-RUN apt-get -y update && apt-get -y upgrade &&\
-    apt-get install -y python3 python3-pip &&\
-    pip3 install -r requirements.txt
-    # npm install electron -g &&\
-    # npm install 
+WORKDIR /app
+RUN pip3 install -r requirements.txt
 
-# Expose a port to the host
-EXPOSE 5000
+# Move to path where the Python Script is located
+WORKDIR /app/engine
 
 # Execute the app
-WORKDIR /home/JunkClassifier/app/engine
 CMD ["python3", "object_detection.py"]
-
