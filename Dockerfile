@@ -15,4 +15,4 @@ RUN pip3 install -r requirements.txt
 WORKDIR /app/engine
 
 # Execute the app
-CMD ["python3", "object_detection.py"]
+CMD ["python", "object_detection.py"]

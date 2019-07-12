@@ -42,4 +42,4 @@ def detect():
         return render_template("object.html", preds=accuracies,
                                classes=json.dumps(classes), img=path)
 
-app.run(debug=True, host='0.0.0.0')
+app.run(host='0.0.0.0')
